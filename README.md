@@ -57,3 +57,11 @@ py -m olfactory_warehouse
 $env:PYTHONPATH="$PWD\src"
 py -m unittest discover -s tests
 ```
+
+## 使用手册
+
+闻香训练流程、每日步骤、字段填写规范和组合实验方法见：
+
+```text
+docs/USER_GUIDE.md
+```
