@@ -1,0 +1,169 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f7f2;
+  --panel: #ffffff;
+  --ink: #1f2523;
+  --muted: #69716e;
+  --line: #dfe5dd;
+  --accent: #1f7a68;
+  --accent-dark: #15594d;
+  --soft: #edf6f2;
+  --warn: #8c4f1f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcf8;
+}
+
+h1, h2, p { margin: 0; }
+h1 { font-size: 26px; font-weight: 750; }
+h2 { font-size: 16px; }
+.topbar p { margin-top: 6px; color: var(--muted); font-size: 14px; }
+
+.top-actions, .form-actions, .records-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.9fr) minmax(520px, 1.1fr);
+  gap: 18px;
+  padding: 18px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.form-panel, .records-panel { padding: 18px; }
+.records-panel { min-width: 0; }
+
+.section-title {
+  margin: 18px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.section-title:first-child { margin-top: 0; }
+
+.grid { display: grid; gap: 12px; }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.wide { grid-column: 1 / -1; }
+
+label {
+  display: grid;
+  gap: 6px;
+  color: #35403d;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #cfd8d2;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+  padding: 10px 11px;
+  outline: none;
+}
+
+textarea { min-height: 78px; resize: vertical; }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 122, 104, 0.12);
+}
+input[type="range"] { padding: 0; accent-color: var(--accent); }
+output { color: var(--accent-dark); font-weight: 800; }
+
+button, .button {
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+button:hover, .button:hover { background: var(--accent-dark); }
+.secondary { background: #e8eee9; color: #26312e; }
+.secondary:hover { background: #dce5df; }
+#status { min-height: 20px; color: var(--muted); font-size: 13px; }
+
+.records-head { justify-content: space-between; margin-bottom: 12px; }
+.records-head input { max-width: 280px; }
+.table-wrap {
+  overflow: auto;
+  max-height: calc(100vh - 180px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { position: sticky; top: 0; background: #eef4ef; z-index: 1; color: #33413d; font-weight: 800; }
+tbody tr:hover { background: var(--soft); }
+
+.pill {
+  display: inline-flex;
+  margin: 0 4px 4px 0;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #e8f3ef;
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.model-box {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #bfd8ce;
+  border-radius: 8px;
+  background: #f1faf6;
+  color: #23312d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.hidden { display: none; }
+.empty { padding: 32px 10px; color: var(--muted); text-align: center; }
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .table-wrap { max-height: none; }
+}
+
+@media (max-width: 680px) {
+  .topbar, .records-head { align-items: stretch; flex-direction: column; }
+  .layout { padding: 10px; }
+  .grid.two { grid-template-columns: 1fr; }
+  .records-head input { max-width: none; }
+}
