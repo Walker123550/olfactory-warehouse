@@ -65,3 +65,11 @@ py -m unittest discover -s tests
 ```text
 docs/USER_GUIDE.md
 ```
+
+## WSL 环境
+
+Windows 与 WSL 路径、运行方式、数据库位置差异见：
+
+```text
+docs/WSL_SETUP.md
+```
