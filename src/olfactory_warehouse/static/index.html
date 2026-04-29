@@ -25,9 +25,7 @@
           <div class="grid two">
             <label>日期<input name="smell_date" type="date" required /></label>
             <label>样本ID<input name="sample_id" placeholder="S001" required /></label>
-            <label>类型
-              <select name="sample_type" required><option>单体</option><option>组合</option></select>
-            </label>
+            <label>类型<select name="sample_type" required><option>单体</option><option>组合</option></select></label>
             <label>原料名称<input name="material_name" placeholder="柠檬" required /></label>
             <label>学名<input name="scientific_name" placeholder="Citrus limon" /></label>
             <label>品牌/来源<input name="brand_source" placeholder="供应商、批次或购买渠道" /></label>
@@ -35,14 +33,26 @@
 
           <div class="section-title"><h2>气味结构</h2></div>
           <div class="grid two">
-            <label>一级分类<input name="primary_category" list="primaryList" placeholder="柑橘" required /></label>
-            <label>二级分类<input name="secondary_category" placeholder="柠檬" /></label>
+            <label>一级分类<select name="primary_category" id="primaryCategory" required><option value="">选择香气家族</option></select></label>
+            <label>二级分类<input name="secondary_category" id="secondaryCategory" list="secondaryList" placeholder="先选择一级分类" /><datalist id="secondaryList"></datalist></label>
             <label class="wide">气味关键词<input name="keywords" placeholder="酸、甜、绿感、粉感" /></label>
             <label>气味强度<input name="intensity" type="range" min="1" max="5" value="3" /><output data-for="intensity">3</output></label>
-            <label>扩散性
-              <select name="diffusion" required><option>中</option><option>弱</option><option>强</option></select>
-            </label>
+            <label>扩散性<select name="diffusion" required><option>中</option><option>弱</option><option>强</option></select></label>
           </div>
+
+          <section class="guide-box" aria-label="新手提示">
+            <div class="guide-head">
+              <div><h3>新手提示</h3><p id="guideSummary">先选择一级分类，系统会按经典香气家族给出候选词。</p></div>
+              <button id="applyGuideButton" class="secondary" type="button">填入推荐</button>
+            </div>
+            <div class="guide-grid">
+              <div><h4>二级分类</h4><div id="secondaryChips" class="chip-list"></div></div>
+              <div><h4>关键词</h4><div id="keywordChips" class="chip-list"></div></div>
+              <div><h4>对比样本</h4><div id="compareChips" class="chip-list"></div></div>
+              <div><h4>归属锚点</h4><div id="anchorChips" class="chip-list"></div></div>
+            </div>
+            <div class="stage-hints"><h4>时间变化提示</h4><div id="stageHintText"></div></div>
+          </section>
 
           <div class="section-title"><h2>挥发变化</h2></div>
           <div class="grid two">
@@ -50,17 +60,13 @@
             <label>10分钟气味<textarea name="note_10m" placeholder="前调变化"></textarea></label>
             <label>30分钟气味<textarea name="note_30m" placeholder="中调趋势"></textarea></label>
             <label>2小时气味<textarea name="note_2h" placeholder="后调残留"></textarea></label>
-            <label>挥发速度
-              <select name="volatility_speed" required><option>中</option><option>快</option><option>慢</option></select>
-            </label>
+            <label>挥发速度<select name="volatility_speed" required><option>中</option><option>快</option><option>慢</option></select></label>
           </div>
 
           <div class="section-title"><h2>对比与标准化</h2></div>
           <div class="grid two">
             <label>对比样本<input name="compared_sample" placeholder="橙子" /></label>
-            <label>相对强度
-              <select name="relative_intensity"><option value=""></option><option>强</option><option>弱</option><option>相近</option></select>
-            </label>
+            <label>相对强度<select name="relative_intensity"><option value=""></option><option>强</option><option>弱</option><option>相近</option></select></label>
             <label>归属锚点<input name="anchor_name" placeholder="柠檬 / 花 / 木" /></label>
             <label class="wide">差异描述<textarea name="difference_desc" placeholder="更酸、更苦、挥发更快"></textarea></label>
           </div>
@@ -68,9 +74,7 @@
           <div class="section-title"><h2>组合实验</h2></div>
           <div class="grid two">
             <label class="wide">配方比例<input name="formula_ratio" placeholder="柠檬20% + 薰衣草50% + 雪松30%" /></label>
-            <label>是否和谐
-              <select name="harmonious"><option value=""></option><option>是</option><option>否</option><option>部分</option></select>
-            </label>
+            <label>是否和谐<select name="harmonious"><option value=""></option><option>是</option><option>否</option><option>部分</option></select></label>
             <label>冲突描述<input name="conflict_desc" placeholder="刺鼻 / 断层 / 压制" /></label>
             <label class="wide">改进建议<textarea name="improvement_suggestion" placeholder="减少前调，增加后调支撑"></textarea></label>
           </div>
@@ -83,38 +87,21 @@
             <label class="wide">备注<textarea name="free_note" placeholder="其他观察，尽量短句"></textarea></label>
           </div>
 
-          <datalist id="primaryList">
-            <option value="柑橘"></option><option value="花香"></option><option value="木质"></option><option value="草本"></option>
-            <option value="辛香"></option><option value="树脂"></option><option value="果香"></option><option value="动物"></option>
-          </datalist>
-
-          <div class="form-actions">
-            <button type="submit">保存记录</button>
-            <button type="reset" class="secondary">清空</button>
-            <span id="status"></span>
-          </div>
+          <div class="form-actions"><button type="submit">保存记录</button><button type="reset" class="secondary">清空</button><span id="status"></span></div>
         </form>
       </section>
 
       <section class="panel records-panel">
-        <div class="records-head">
-          <h2>记录列表</h2>
-          <input id="searchInput" placeholder="搜索样本、关键词、分类、差异" />
-        </div>
+        <div class="records-head"><h2>记录列表</h2><input id="searchInput" placeholder="搜索样本、关键词、分类、差异" /></div>
         <div id="modelBox" class="model-box hidden"></div>
         <div class="table-wrap">
           <table>
-            <thead>
-              <tr>
-                <th>日期</th><th>样本</th><th>分类</th><th>关键词</th><th>强度</th><th>0min</th><th>30min</th><th>2h</th><th>对比</th><th>差异</th><th>操作</th>
-              </tr>
-            </thead>
+            <thead><tr><th>日期</th><th>样本</th><th>分类</th><th>关键词</th><th>强度</th><th>0min</th><th>30min</th><th>2h</th><th>对比</th><th>差异</th><th>操作</th></tr></thead>
             <tbody id="recordsBody"></tbody>
           </table>
         </div>
       </section>
     </main>
-
     <script src="/static/app.js"></script>
   </body>
 </html>
