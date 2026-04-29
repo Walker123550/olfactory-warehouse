@@ -73,3 +73,11 @@ Windows 与 WSL 路径、运行方式、数据库位置差异见：
 ```text
 docs/WSL_SETUP.md
 ```
+
+## 开发环境
+
+后续以 WSL Ubuntu 仓库为主工作区，见：
+
+```text
+docs/DEVELOPMENT.md
+```
