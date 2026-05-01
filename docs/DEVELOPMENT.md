@@ -14,14 +14,14 @@ Windows 目录 `C:\Users\swk\Documents\New project` 只作为历史副本，不�
 
 ```bash
 cd ~/projects/olfactory-warehouse
-PYTHONPATH=src python3 -m olfactory_warehouse
+./scripts/start.sh
 ```
 
 运行测试：
 
 ```bash
 cd ~/projects/olfactory-warehouse
-PYTHONPATH=src python3 -m unittest discover -s tests
+make test
 ```
 
 同步远程 main：
