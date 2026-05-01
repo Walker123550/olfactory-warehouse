@@ -15,6 +15,26 @@
 
 ## 运行
 
+WSL / Linux 推荐：
+
+```bash
+./scripts/start.sh
+```
+
+或：
+
+```bash
+make run
+```
+
+手动运行：
+
+```bash
+PYTHONPATH=src python3 -m olfactory_warehouse
+```
+
+Windows PowerShell：
+
 ```powershell
 $env:PYTHONPATH="$PWD\src"
 py -m olfactory_warehouse
